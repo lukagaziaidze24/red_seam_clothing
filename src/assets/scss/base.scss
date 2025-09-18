@@ -1,0 +1,114 @@
+:root{
+    --primary-background-color: #FFFFFF;
+    --secondary-background-color: #FF4000;
+    --primary-text-color: #10151F;
+    --secondary-text-color: #3E424A;
+    --third-text-color: #FFFFFF;
+    --fourth-text-color: #FF4000;
+
+}
+.main-container{
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+// for texts>>
+.poppins-400{
+    font-family: "poppins-400" !important;
+}
+.poppins-500{
+    font-family: "poppins-500" !important;
+}
+.poppins-600{
+    font-family: "poppins-600" !important;
+}
+.primary-text-color{
+    color: var(--primary-text-color);
+}
+.secondary-text-color{
+    color: var(--secondary-text-color);
+}
+.third-text-color{
+    color: var(--third-text-color);
+}
+.fourth-text-color{
+    color: var(--fourth-text-color);
+}
+
+
+.light-text-size{
+    font-size: 14px;
+    line-height: 100%;
+    font-family: "poppins-400" !important;
+}
+
+
+
+
+
+// for common templates >>
+.cursor-pointer{
+    cursor: pointer;
+}
+.w-100{
+    width: 100%;
+}
+.w-50{
+    width: 50%;
+}
+.border-radius-10{
+    border-radius: 10px;
+}
+    // primary input >> 
+.primary-input-wrapper{
+    position: relative;
+    width: 100%;
+    // font-size: 14px;
+    // line-height: 100%;
+    &:not(.with-show-button){
+        .show-button{
+            display: none;
+        }
+    }
+    &.with-show-button{
+
+        .show-button{
+            display: inline-block;
+            position: absolute; 
+            // top: 50%;  
+            // transform: translateY(-50%);
+            top: 12px;
+            right: 12px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+    }
+    .primary-input{
+        width: 100%;
+        border: 1px solid #E1DFE1;
+        border-radius: 8px;
+        padding: 12px;
+    }
+    
+    &:has(.primary-input:placeholder-shown){
+        label.primary-placeholder{
+            display: inline-block;
+            position: absolute;
+            // top: 50%;
+            // transform: translateY(-50%);
+            top: 12px;
+            left: 12px;
+            z-index: 1;
+            opacity: 1;
+            background-color: transparent;
+            margin-left: 1px;
+            margin-top: 5px;
+        }
+    }
+    &:has(.primary-input){
+        label.primary-placeholder{
+            display: none;
+        }
+    }
+}

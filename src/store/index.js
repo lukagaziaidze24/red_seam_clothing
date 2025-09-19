@@ -16,13 +16,18 @@ export default createStore({
         password,
       });
     },
-    register({state}, {username, email, password, password_confirmation }){
-      return axios.post("register", {
-        username,
-        email,
-        password,
-        password_confirmation,
+    register({state}, Obj){
+      // {username, email, password, password_confirmation, avatar}
+      let formData = new FormData();
+
+      Object.entries(Obj).forEach(([key, value]) => {
+        formData.append(key, value)
       });
+
+      // for(let pair of formData.values()){
+      // }
+      // return;
+      return axios.post("register", formData);
     }
   },
   modules: {

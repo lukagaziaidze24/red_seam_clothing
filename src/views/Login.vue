@@ -34,7 +34,7 @@
                                 </ul>
                             </Field>
                             <label for="password" class="primary-placeholder secondary-text-color">Password <span class="fourth-text-color">*</span></label>
-                            <button type="button" class="show-button" @click="this.$helper.toggleInput($event)">
+                            <button type="button" class="show-button" @click="this.$helper.methods.toggleInput($event)">
                                 <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
                             </button>
                         </fieldset>
@@ -84,24 +84,28 @@ export default {
         async loginHandler(values, actions){
             // delay submitting
             // await new Promise(resolve => setTimeout(resolve, 4000));
+
+            await new Promise(async (resolve) => {
+                await this.$store.dispatch("login", values).then((response) => {
+                    
+                    window.localStorage.setItem("BearerToken", response.data.token);
+                    window.localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+                    axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+                    this.$store.state.userInfo = response.data.user;
+    
+                    this.$router.push("/");
+                }).catch((error) => {
+    
+                    if(error?.response?.status == 401){
+                        actions.setErrors({
+                            email: error.response.data.message,
+                            password: error.response.data.message,
+                        });
+                    }
+                });
+                resolve();
+            })
             
-            this.$store.dispatch("login", values).then((response) => {
-                
-                window.localStorage.setItem("BearerToken", response.data.token);
-                window.localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
-                axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
-                this.$store.state.userInfo = response.data.user;
-
-                this.$router.push("/");
-            }).catch((error) => {
-
-                if(error?.response?.status == 401){
-                    actions.setErrors({
-                        email: error.response.data.message,
-                        password: error.response.data.message,
-                    });
-                }
-            });
         },
     }
 }

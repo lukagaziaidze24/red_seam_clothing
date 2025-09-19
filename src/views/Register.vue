@@ -8,9 +8,33 @@
                     Register
                 </h2>
 
-                <Form ref="registerForm" :validation-schema="loginSchema" @submit="registerHandler" v-slot="{isSubmitting}" class="d-flex flex-column align-items-stretch" style="row-gap: 46px;">
+                <Form ref="registerForm" :validation-schema="loginSchema" @submit="registerHandler" v-slot="{isSubmitting, values}" class="d-flex flex-column align-items-stretch" style="row-gap: 46px;">
                     
                     <fieldset class="d-flex flex-column align-items-stretch" style="row-gap: 24px;">
+                        <fieldset class="d-flex flex-column align-items-start">
+                            <fieldset class="d-flex align-items-center" style="column-gap: 15px;">
+                                <label for="avatar" class="primary-form-file-input-label">
+                                    <div class="photo-preview-wrapper">
+                                        <img v-if="!this.avatarImageSrcHolder" src="@/assets/images/registerImages/unknownAvatar.svg" alt="profile photo preview">
+                                        <img v-if="this.avatarImageSrcHolder" style="width: 100%; height: 100%; object-fit: cover;" :src="this.avatarImageSrcHolder" alt="Avatar">
+                                    </div>
+                                    <p v-if="!this.avatarImageSrcHolder" class="light-text-size secondary-text-color">Upload image</p>
+                                    <p v-if="this.avatarImageSrcHolder" class="light-text-size secondary-text-color">Upload new</p>
+                                </label>
+                                <p v-if="this.avatarImageSrcHolder" @click="removeAvatarImage()" class="light-text-size secondary-text-color cursor-pointer">Remove</p>
+                            </fieldset>
+
+
+                            <!-- :rules="isPhotoUploadedValid" -->
+                            <Field name="avatar" value="" :validateOnInput="true" v-slot="{ field, errors, handleChange, handleBlur, errorMessage, meta, isSubmitting }">
+                                <input @change="handleChange" @blur="handleBlur" type="file" accept="image/*" id="avatar" class="primary-form-file-input">
+                                <ul class="d-flex flex-column gap-1 mt-1">
+                                    <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
+                                        <p>{{ errorMsg }}</p>
+                                    </li>
+                                </ul>
+                            </Field>
+                        </fieldset>
                         <fieldset class="primary-input-wrapper light-text-size">
                             <!-- :rules="isRequired" -->
                             <Field name="username" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
@@ -38,7 +62,7 @@
                         <fieldset class="primary-input-wrapper with-show-button light-text-size">
                             <!-- :rules="isRequired" -->
                             <Field name="password" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
-                                <input v-bind="field" v-model="passwordVmodel" required id="password" name="password" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
+                                <input v-bind="field" required id="password" name="password" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
                                 <ul class="d-flex flex-column gap-1 mt-1">
                                     <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                         <p>{{ errorMsg }}</p>
@@ -46,14 +70,14 @@
                                 </ul>
                             </Field>
                             <label for="password" class="primary-placeholder secondary-text-color">Password <span class="fourth-text-color">*</span></label>
-                            <button type="button" class="show-button" @click="this.$helper.toggleInput($event)">
+                            <button type="button" class="show-button" @click="this.$helper.methods.toggleInput($event)">
                                 <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
                             </button>
                         </fieldset>
                         <fieldset class="primary-input-wrapper with-show-button light-text-size">
                             <!-- :rules="isRequired" -->
                             <Field name="password_confirmation" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
-                                <input v-bind="field" v-model="confirmPasswordVmodel" required id="password_confirmation" name="password_confirmation" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
+                                <input v-bind="field" required id="password_confirmation" name="password_confirmation" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
                                 <ul class="d-flex flex-column gap-1 mt-1">
                                     <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                         <p>{{ errorMsg }}</p>
@@ -61,7 +85,7 @@
                                 </ul>
                             </Field>
                             <label for="password_confirmation" class="primary-placeholder secondary-text-color">Conform password <span class="fourth-text-color">*</span></label>
-                            <button type="button" class="show-button" @click="this.$helper.toggleInput($event)">
+                            <button type="button" class="show-button" @click="this.$helper.methods.toggleInput($event)">
                                 <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
                             </button>
                         </fieldset>
@@ -98,8 +122,7 @@ import axios from 'axios';
 export default {
     data(){
         return {
-            passwordVmodel: "",
-            confirmPasswordVmodel: "",
+            avatarImageSrcHolder: null,
             loginSchema: {
                 username: yup.string().min(3, "The username field must be at least 3 characters."),
                 email: yup.string().email("The email field must be a valid email address.").min(3, "The email field must be at least 3 characters."),
@@ -114,33 +137,68 @@ export default {
                         // 'this.options.context' contains all other fields
                         return value === this.options.context.password;
                     }),
-            }
+                avatar: (file) => {
+                    if(!file){
+                        return true;
+                    }
+                    let isAvatarValid = this.$helper.methods.isAvatarValid(file);
+                    
+                    if(isAvatarValid === true){
+                        let avatarBlob = new Blob([file], {
+                            type: file?.type,
+                        });
+                        this.avatarImageSrcHolder = URL.createObjectURL(avatarBlob);
+                    }else{
+                        this.clearAvatarImage();
+                    }
+
+                    return isAvatarValid;
+                }
+            },
         }
     },
     components: {
         PrimaryBtnComponent,
     },
     methods: {
-        registerHandler(values, actions){
+        removeAvatarImage(){
+            if(this.$refs?.registerForm){
+                this.$refs?.registerForm?.setFieldValue("avatar", "");
+            }
+            this.clearAvatarImage();
+        },
+        clearAvatarImage(){
+
+            URL.revokeObjectURL(this.avatarImageSrcHolder);
+            this.avatarImageSrcHolder = null;
+        },
+        async registerHandler(values, actions){
             // delay submitting
             // await new Promise(resolve => setTimeout(resolve, 4000));
             
-            this.$store.dispatch("register", values).then((response) => {
-                
-                window.localStorage.setItem("BearerToken", response.data.token);
-                window.localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
-                axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
-                this.$store.state.userInfo = response.data.user;
 
-                this.$router.push("/");
-            }).catch((error) => {
+            await new Promise(async (resolve) => {
 
-                if(error?.response?.status == 422){
-                    Object.entries(error.response.data.errors).forEach(([key, value]) => {
-                        actions.setFieldError(key, value);
-                    });
-                }
+                await this.$store.dispatch("register", values).then((response) => {
+                    
+                    window.localStorage.setItem("BearerToken", response.data.token);
+                    window.localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+                    axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+                    this.$store.state.userInfo = response.data.user;
+    
+                    this.$router.push("/");
+                }).catch((error) => {
+    
+                    if(error?.response?.status == 422){
+                        Object.entries(error.response.data.errors).forEach(([key, value]) => {
+                            actions.setFieldError(key, value);
+                        });
+                    }
+                });
+                resolve();
             });
+
+
         },
     }
 }

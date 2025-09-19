@@ -1,6 +1,7 @@
 :root{
     --primary-background-color: #FFFFFF;
     --secondary-background-color: #FF4000;
+    --primary-border-color: #E1DFE1;
     --primary-text-color: #10151F;
     --secondary-text-color: #3E424A;
     --third-text-color: #FFFFFF;
@@ -87,7 +88,7 @@
     }
     .primary-input{
         width: 100%;
-        border: 1px solid #E1DFE1;
+        border: 1px solid var(--primary-border-color);
         border-radius: 8px;
         padding: 12px;
         &.invalid{
@@ -118,10 +119,32 @@
 }
 
 
-
-
+    // for primary error message>>
 
 .primary-form-msg{
     font-size: 10px;
     line-height: 100%;
+}
+
+    // for primary form file input>>
+.primary-form-file-input{
+    display: none;
+}
+.primary-form-file-input-label{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    column-gap: 15px;
+    background-color: inherit;
+    width: fit-content;
+    .photo-preview-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--primary-border-color);
+    }
 }

@@ -14,6 +14,9 @@
 }
 
 // for texts>>
+.poppins-300{
+    font-family: "poppins-300" !important;
+}
 .poppins-400{
     font-family: "poppins-400" !important;
 }
@@ -24,16 +27,16 @@
     font-family: "poppins-600" !important;
 }
 .primary-text-color{
-    color: var(--primary-text-color);
+    color: var(--primary-text-color) !important;
 }
 .secondary-text-color{
-    color: var(--secondary-text-color);
+    color: var(--secondary-text-color) !important;
 }
 .third-text-color{
-    color: var(--third-text-color);
+    color: var(--third-text-color) !important;
 }
 .fourth-text-color{
-    color: var(--fourth-text-color);
+    color: var(--fourth-text-color) !important;
 }
 
 
@@ -64,8 +67,6 @@
 .primary-input-wrapper{
     position: relative;
     width: 100%;
-    // font-size: 14px;
-    // line-height: 100%;
     &:not(.with-show-button){
         .show-button{
             display: none;
@@ -89,6 +90,9 @@
         border: 1px solid #E1DFE1;
         border-radius: 8px;
         padding: 12px;
+        &.invalid{
+            border: 1px solid var(--fourth-text-color);
+        }
     }
     
     &:has(.primary-input:placeholder-shown){
@@ -111,4 +115,13 @@
             display: none;
         }
     }
+}
+
+
+
+
+
+.primary-form-msg{
+    font-size: 10px;
+    line-height: 100%;
 }

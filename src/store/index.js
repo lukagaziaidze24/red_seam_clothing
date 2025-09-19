@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default createStore({
   state: {
+    userInfo: null,
   },
   getters: {
   },
@@ -10,11 +11,17 @@ export default createStore({
   },
   actions: {
     login({state}, {email, password}){
-      console.log(email);
-      console.log(password);
       return axios.post("login", {
         email,
         password,
+      });
+    },
+    register({state}, {username, email, password, password_confirmation }){
+      return axios.post("register", {
+        username,
+        email,
+        password,
+        password_confirmation,
       });
     }
   },

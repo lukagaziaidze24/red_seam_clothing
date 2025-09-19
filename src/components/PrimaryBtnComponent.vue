@@ -1,5 +1,5 @@
 <template>
-    <button :type="bntType" :style="[{'--padding-block': paddingY}, {'--padding-inline': paddingX}]" class="border-radius-10 w-100">
+    <button :disabled="disabled" :type="btnType" :style="[{'--padding-block': paddingY}, {'--padding-inline': paddingX}]" class="border-radius-10 w-100">
         <slot name="btnContent">
 
         </slot>
@@ -13,7 +13,7 @@ export default {
         }
     },
     props: {
-        bntType: {
+        btnType: {
             type: String,
             default: "button",
         },
@@ -25,6 +25,10 @@ export default {
             type: String,
             default: "0px",
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        }
     }   
 }
 </script>

@@ -4,7 +4,6 @@ import router from './router'
 import store from './store'
 import helper from './helper'
 import { Field, Form, ErrorMessage } from 'vee-validate';
-import axios from 'axios'
 
 
 // createApp(App).use(store).use(router).mount('#app')
@@ -17,7 +16,6 @@ redSeamClothingApp.config.globalProperties.$helper=helper;
 redSeamClothingApp.component("Field", Field);
 redSeamClothingApp.component("Form", Form);
 redSeamClothingApp.component("ErrorMessage", ErrorMessage);
-redSeamClothingApp.component("axios", axios);
 
 
 

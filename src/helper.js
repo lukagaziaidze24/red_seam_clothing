@@ -7,4 +7,5 @@ export default {
             primaryInput.setAttribute("type", "password");
         }
     },
+
 }

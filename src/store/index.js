@@ -6,18 +6,22 @@ export default createStore({
     userInfo: null,
   },
   getters: {
+    getUserInfo: (state) => {
+      return state.userInfo;
+    }
   },
   mutations: {
   },
   actions: {
+    // for login >>
     login({state}, {email, password}){
       return axios.post("login", {
         email,
         password,
       });
     },
+    // for register >>
     register({state}, Obj){
-      // {username, email, password, password_confirmation, avatar}
       let formData = new FormData();
 
       Object.entries(Obj).forEach(([key, value]) => {
@@ -28,7 +32,18 @@ export default createStore({
       // }
       // return;
       return axios.post("register", formData);
-    }
+    },
+    // for products >>
+    products({state}, filtersObj){
+      // console.log(filtersObj);
+      
+      return axios.get("products", {
+        params: {
+          ...filtersObj,
+          page: 1,
+        }
+      });
+    },
   },
   modules: {
   }

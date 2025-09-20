@@ -4,7 +4,7 @@
         </section>
         <main class="d-flex justify-content-center w-50">
             <div class="d-flex flex-column align-items-stretch justify-content-start">
-                <h2 class="login-title primary-text-color poppins-600">
+                <h2 class="extra-large-text primary-text-color poppins-600">
                     Log in
                 </h2>
 
@@ -89,7 +89,7 @@ export default {
                 await this.$store.dispatch("login", values).then((response) => {
                     
                     window.localStorage.setItem("BearerToken", response.data.token);
-                    window.localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+                    window.localStorage.setItem("userInfo", JSON.stringify(response.data.user));
                     axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
                     this.$store.state.userInfo = response.data.user;
     
@@ -124,10 +124,6 @@ export default {
             max-width: 554px;
             width: 100%;
             row-gap: 48px;
-        }
-        .login-title{
-            font-size: 42px;
-            line-height: 100%;
         }
     }
 }

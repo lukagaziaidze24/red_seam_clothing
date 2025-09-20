@@ -7,6 +7,7 @@ import axios from 'axios';
 export default {
   mounted(){
     this.setAxiosDefaults();
+    this.getUserInfo();
   },
   methods: {
     setAxiosDefaults(){
@@ -15,6 +16,9 @@ export default {
       if(window.localStorage.getItem("BearerToken")){
         axios.defaults.headers.common.Authorization = `Bearer ${window.localStorage.getItem("BearerToken")}`
       }
+    },
+    getUserInfo(){
+      this.$store.state.userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
     }
   }
 }

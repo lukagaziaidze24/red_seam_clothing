@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="d-flex flex-column align-items-stretch" style="row-gap: 72px;">
         <HeaderComponent/>
         <!-- unda gaiweros hederi -->
         <router-view/>

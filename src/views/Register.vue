@@ -4,7 +4,7 @@
         </section>
         <main class="d-flex justify-content-center w-50">
             <div class="d-flex flex-column align-items-stretch justify-content-start">
-                <h2 class="login-title primary-text-color poppins-600">
+                <h2 class="extra-large-text primary-text-color poppins-600">
                     Register
                 </h2>
 
@@ -18,16 +18,16 @@
                                         <img v-if="!this.avatarImageSrcHolder" src="@/assets/images/registerImages/unknownAvatar.svg" alt="profile photo preview">
                                         <img v-if="this.avatarImageSrcHolder" style="width: 100%; height: 100%; object-fit: cover;" :src="this.avatarImageSrcHolder" alt="Avatar">
                                     </div>
-                                    <p v-if="!this.avatarImageSrcHolder" class="light-text-size secondary-text-color">Upload image</p>
-                                    <p v-if="this.avatarImageSrcHolder" class="light-text-size secondary-text-color">Upload new</p>
+                                    <p v-if="!this.avatarImageSrcHolder" class="light-text-size secondary-text-color" id="upload-text">Upload image</p>
+                                    <p v-if="this.avatarImageSrcHolder" class="light-text-size secondary-text-color" aria-label="upload new image">Upload new</p>
                                 </label>
-                                <p v-if="this.avatarImageSrcHolder" @click="removeAvatarImage()" class="light-text-size secondary-text-color cursor-pointer">Remove</p>
+                                <p v-if="this.avatarImageSrcHolder" @click="removeAvatarImage()" class="light-text-size secondary-text-color cursor-pointer" aria-label="remove image">Remove</p>
                             </fieldset>
 
 
                             <!-- :rules="isPhotoUploadedValid" -->
                             <Field name="avatar" value="" :validateOnInput="true" v-slot="{ field, errors, handleChange, handleBlur, errorMessage, meta, isSubmitting }">
-                                <input @change="handleChange" @blur="handleBlur" type="file" accept="image/*" id="avatar" class="primary-form-file-input">
+                                <input aria-labelledby="upload-text" @change="handleChange" @blur="handleBlur" type="file" accept="image/*" id="avatar" class="primary-form-file-input">
                                 <ul class="d-flex flex-column gap-1 mt-1">
                                     <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                         <p>{{ errorMsg }}</p>
@@ -84,7 +84,7 @@
                                     </li>
                                 </ul>
                             </Field>
-                            <label for="password_confirmation" class="primary-placeholder secondary-text-color">Conform password <span class="fourth-text-color">*</span></label>
+                            <label for="password_confirmation" class="primary-placeholder secondary-text-color">Confirm password <span class="fourth-text-color">*</span></label>
                             <button type="button" class="show-button" @click="this.$helper.methods.toggleInput($event)">
                                 <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
                             </button>
@@ -182,7 +182,7 @@ export default {
                 await this.$store.dispatch("register", values).then((response) => {
                     
                     window.localStorage.setItem("BearerToken", response.data.token);
-                    window.localStorage.setItem("UserInfo", JSON.stringify(response.data.user));
+                    window.localStorage.setItem("userInfo", JSON.stringify(response.data.user));
                     axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
                     this.$store.state.userInfo = response.data.user;
     
@@ -217,10 +217,6 @@ export default {
             max-width: 554px;
             width: 100%;
             row-gap: 48px;
-        }
-        .login-title{
-            font-size: 42px;
-            line-height: 100%;
         }
     }
 }

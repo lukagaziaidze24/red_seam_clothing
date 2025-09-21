@@ -1,5 +1,5 @@
 <template>
-    <div class="main-container d-flex justify-content-stretch align-items-center">
+    <div class="main-container d-flex justify-content-stretch align-items-center" style="margin-top: 72px;">
         <section class="background-section w-50" title="background image" aria-label="login background image">
         </section>
         <main class="d-flex justify-content-center w-50">
@@ -27,7 +27,7 @@
 
                             <!-- :rules="isPhotoUploadedValid" -->
                             <Field name="avatar" value="" :validateOnInput="true" v-slot="{ field, errors, handleChange, handleBlur, errorMessage, meta, isSubmitting }">
-                                <input aria-labelledby="upload-text" @change="handleChange" @blur="handleBlur" type="file" accept="image/*" id="avatar" class="primary-form-file-input">
+                                <input ref="avatar" aria-labelledby="upload-text" @change="handleChange" @blur="handleBlur" type="file" accept="image/*" id="avatar" class="primary-form-file-input">
                                 <ul class="d-flex flex-column gap-1 mt-1">
                                     <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                         <p>{{ errorMsg }}</p>
@@ -99,7 +99,7 @@
                             </template>
                         </PrimaryBtnComponent>
                         <p class="d-flex align-items-center column-gap-2">
-                            <span class="light-text-size secondary-text-color">not a member?</span>
+                            <span class="light-text-size secondary-text-color">Already member?</span>
                             <router-link to="/login" class="light-text-size fourth-text-color poppins-500">Log in</router-link>
                         </p>
                     </fieldset>
@@ -164,6 +164,10 @@ export default {
         removeAvatarImage(){
             if(this.$refs?.registerForm){
                 this.$refs?.registerForm?.setFieldValue("avatar", "");
+                
+            }
+            if(this.$refs?.avatar){
+                this.$refs.avatar.value = '';
             }
             this.clearAvatarImage();
         },

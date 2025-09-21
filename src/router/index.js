@@ -3,6 +3,7 @@ import MainComponent from '@/components/MainComponent.vue'
 import Products from '@/views/Products.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
+import DetailedProduct from '@/views/DetailedProduct.vue'
 
 const routes = [
   {
@@ -24,7 +25,12 @@ const routes = [
         path: '/register',
         name: 'Register',
         component: Register,
-      }
+      },
+      {
+        path: '/detailedProduct/:productID',
+        name: 'detailedProduct',
+        component: DetailedProduct,
+      },
     ]
   },
   // {

@@ -42,6 +42,17 @@ export default createStore({
         }
       });
     },
+    // for detailedProduct page>>
+    getSingleProduct({state}, id){
+      return axios.get(`products/${id}`);
+    },
+    addProductToCart({state}, {color, size, quantity, product}){
+      return axios.post(`cart/products/${product}`, {
+        color,
+        size, 
+        quantity,
+      });
+    },
   },
   modules: {
   }

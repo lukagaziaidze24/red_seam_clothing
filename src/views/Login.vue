@@ -1,5 +1,5 @@
 <template>
-    <div class="main-container d-flex justify-content-stretch align-items-center">
+    <div class="main-container d-flex justify-content-stretch align-items-center" style="margin-top: 72px;">
         <section class="background-section w-50" title="background image" aria-label="login background image">
         </section>
         <main class="d-flex justify-content-center w-50">

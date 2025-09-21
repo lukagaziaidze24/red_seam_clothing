@@ -216,3 +216,25 @@
 .next-button {
     border: none;
 }
+
+// for multiselect >>>
+.multiselect{
+    --ms-border-color: var(--primary-border-color);
+    --ms-font-size: 16px;
+    // --ms-line-height: 100%;
+    --ms-py: 9px;
+    --ms-px: 15px;
+    --ms-radius: 10px;
+    --ms-placeholder-color: var(--primary-text-color);
+
+
+    --ms-option-font-size: 16px;
+    --ms-option-bg-selected: var(--fourth-text-color);
+    --ms-option-py: 9px;
+    --ms-option-px: 15px;
+    margin: 0 !important;
+    .multiselect-single-label-text{
+        overflow: visible !important;
+    }
+
+}

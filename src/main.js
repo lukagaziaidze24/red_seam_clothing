@@ -25,3 +25,4 @@ redSeamClothingApp.mount("#app");
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.js"
+import "@vueform/multiselect/themes/default.css"

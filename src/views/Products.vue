@@ -1,5 +1,5 @@
 <template>
-    <main class="main-container with-padding d-flex flex-column align-items-stretch" style="row-gap: 32px;">
+    <main class="main-container with-padding d-flex flex-column align-items-stretch" style="row-gap: 32px; margin-top: 72px;">
         <section class="d-flex align-items-stretch justify-content-between">
             <h2 class="extra-large-text primary-text-color">
                 Products
@@ -32,7 +32,7 @@
                                                 </li>
                                             </ul>
                                         </Field>
-                                        <label for="filter[price_from]" class="primary-placeholder secondary-text-color">From <span class="fourth-text-color">*</span></label>
+                                        <label for="filter[price_from]" class="primary-placeholder secondary-text-color">From</label>
                                     </fieldset>
                                     <fieldset class="primary-input-wrapper light-text-size">
                                         <!-- :rules="isRequired" -->
@@ -44,7 +44,7 @@
                                                 </li>
                                             </ul>
                                         </Field>
-                                        <label for="filter[price_to]" class="primary-placeholder secondary-text-color">To <span class="fourth-text-color">*</span></label>
+                                        <label for="filter[price_to]" class="primary-placeholder secondary-text-color">To</label>
                                     </fieldset>
                                     
                                 </fieldset>
@@ -102,7 +102,7 @@
         </section>
         <section class="d-flex flex-column align-items-center" style="row-gap: 90px; padding-bottom: 219px;">
             <ul class="products-grid-wrapper w-100">
-                <li v-for="(data, i) of productsInfoArray" :key="i" style="width: 100%;" class="cursor-pointer">
+                <li v-for="(data, i) of productsInfoArray" :key="i" style="width: 100%;" @click="seeDetailedProduct(data)" class="cursor-pointer">
                     <figure class="d-flex flex-column align-items-stretch" style="row-gap: 12px;">
                         <div class="w-100 h-100 border-radius-10" style="background-color: var(--third-background-color); overflow: hidden;">
                             <img :src="data.cover_image" :alt="data.name" style="width: 100%; max-height: 549px; height: 100%; mix-blend-mode: multiply;">
@@ -213,6 +213,9 @@ export default {
         this.getProducts();
     },
     methods: {
+        seeDetailedProduct(productObj){
+            this.$router.push(`/detailedProduct/${productObj.id}`);
+        },
         paginationClickHandler(){
             this.getProducts();
         },
@@ -266,6 +269,7 @@ export default {
                 this.productsPagingInfo.total = response.data.meta.total;
                 this.productsPagingInfo.showingFrom = response.data.meta.from;
                 this.productsPagingInfo.showingTo = response.data.meta.to;
+                this.productsPagingInfo.limit = response.data.meta.per_page;
                 window.scrollTo(0, 0);
             });
         },

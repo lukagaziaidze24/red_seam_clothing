@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@vee-validate/yup": "^4.15.1",
+    "@vueform/multiselect": "^2.6.11",
     "axios": "^0.25.0",
     "bootstrap": "^5.3.8",
     "core-js": "^3.8.3",

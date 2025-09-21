@@ -35,12 +35,10 @@ export default createStore({
     },
     // for products >>
     products({state}, filtersObj){
-      // console.log(filtersObj);
       
       return axios.get("products", {
         params: {
           ...filtersObj,
-          page: 1,
         }
       });
     },

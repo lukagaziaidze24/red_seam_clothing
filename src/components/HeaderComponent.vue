@@ -9,7 +9,7 @@
             </router-link>
             <router-link v-if="this.$route.name == 'Register' || this.$route.name == 'Login'" to="/login" class="d-flex align-items-center column-gap-1 cursor-pointer">
                 <img class="cursor-pointer" src="@/assets/images/headerImages/unknownProfile.svg" alt="cart" title="cart" aria-label="cart panel">
-                <p style="font-size: 12px; line-height: 100%;" class="primary-text-color">login</p>
+                <p class="primary-text-color before-light-text-size poppins-500">login</p>
             </router-link>
             <div v-else class="d-flex align-items-center" style="column-gap: 20px;">
                 <img class="cursor-pointer" src="@/assets/images/headerImages/cart.svg" alt="cart" title="cart" aria-label="cart panel">

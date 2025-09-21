@@ -1,5 +1,5 @@
 <template>
-    <div class="dropDown-wrapper d-flex align-items-center">
+    <div class="dropDown-wrapper d-flex align-items-center" :style="{'--zIndex': zIndex}">
         <div :aria-expanded="isOpen" class="cursor-pointer" aria-label="filter dropdown" @click="toggleDropdown()">
             <slot name="dropdownHeader">
 
@@ -32,6 +32,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        zIndex: {
+            type: Number,
+            default: 50,
+        }
     },
     watch: {
         closeDropdown: {
@@ -51,6 +55,7 @@ export default {
 <style lang="scss" scoped>
 .dropDown-wrapper{
     position: relative;
+    z-index: var(--zIndex);
     .dropdown-body{
         opacity: 0;
         width: max-content;

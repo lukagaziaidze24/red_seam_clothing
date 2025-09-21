@@ -1,6 +1,7 @@
 :root{
     --primary-background-color: #FFFFFF;
     --secondary-background-color: #FF4000;
+    --third-background-color: #F8F6F7;
     --primary-border-color: #E1DFE1;
     --primary-text-color: #10151F;
     --secondary-text-color: #3E424A;
@@ -44,6 +45,12 @@
 }
 
 
+
+.before-light-text-size{
+    font-size: 12px;
+    line-height: 100%;
+}
+
 .light-text-size{
     font-size: 14px;
     line-height: 100%;
@@ -54,7 +61,10 @@
     font-size: 16px;
     line-height: 100%;
 }
-
+.after-standard-text-size{
+    font-size: 18px;
+    line-height: 100%;
+}
 
 .extra-large-text{
     font-size: 42px;
@@ -171,4 +181,38 @@
         overflow: hidden;
         border: 1px solid var(--primary-border-color);
     }
+}
+    // for primary pagination component >>>
+.pagination-container {
+    display: flex;
+    column-gap: 10px;
+    margin: 0;
+}
+
+.paginate-buttons {
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--primary-background-color);
+    border: 1px solid var(--third-background-color);
+    color: #212B36;
+    font-size: 14px;
+    line-height: 100%;
+    font-family: "poppins-500";
+}
+.paginate-buttons:hover {
+    background-color: #d8d8d8;
+}
+
+.active-page {
+    border-color: var(--secondary-background-color);
+    color: var(--secondary-background-color);
+}
+.back-button {
+    border: none;
+}
+
+.next-button {
+    border: none;
 }

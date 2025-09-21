@@ -4,13 +4,14 @@ import router from './router'
 import store from './store'
 import helper from './helper'
 import { Field, Form, ErrorMessage } from 'vee-validate';
+import VueAwesomePaginate from "vue-awesome-paginate";
 
 
 // createApp(App).use(store).use(router).mount('#app')
 
 
 const redSeamClothingApp = createApp(App);
-redSeamClothingApp.use(store).use(router);
+redSeamClothingApp.use(store).use(router).use(VueAwesomePaginate);
 redSeamClothingApp.config.globalProperties.$helper=helper;
 
 redSeamClothingApp.component("Field", Field);

@@ -11,7 +11,7 @@
                 <Form ref="loginForm" :validation-schema="loginSchema" @submit="loginHandler" v-slot="{isSubmitting}" class="d-flex flex-column align-items-stretch" style="row-gap: 46px;">
                     
                     <fieldset class="d-flex flex-column align-items-stretch" style="row-gap: 24px;">
-                        <fieldset class="primary-input-wrapper light-text-size">
+                        <fieldset class="primary-input-wrapper light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="email" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
                                 <input v-bind="field" required id="email" name="email" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="email" placeholder="">
@@ -23,7 +23,7 @@
                             </Field>
                             <label for="email" class="primary-placeholder secondary-text-color">Email <span class="fourth-text-color">*</span></label>
                         </fieldset>
-                        <fieldset class="primary-input-wrapper with-show-button light-text-size">
+                        <fieldset class="primary-input-wrapper with-show-button light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="password" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
                                 <input v-bind="field" required id="password" name="password" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
@@ -42,13 +42,13 @@
                     <fieldset class="d-flex flex-column align-items-center" style="row-gap: 24px;">
                         <PrimaryBtnComponent class="w-100" btnType="submit" :disabled="isSubmitting">
                             <template v-slot:btnContent>
-                                <p class="light-text-size third-text-color">
+                                <p class="light-text-size third-text-color poppins-400">
                                     Log in
                                 </p>
                             </template>
                         </PrimaryBtnComponent>
                         <p class="d-flex align-items-center column-gap-2">
-                            <span class="light-text-size secondary-text-color">not a member?</span>
+                            <span class="light-text-size poppins-400 secondary-text-color">not a member?</span>
                             <router-link to="/register" class="light-text-size fourth-text-color poppins-500">Register</router-link>
                         </p>
                     </fieldset>

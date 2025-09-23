@@ -22,7 +22,7 @@
                             </h6>
                             <Form ref="filtersForm" class="d-flex flex-column align-items-stretch" style="row-gap: 10px;"  v-slot="{isSubmitting, values}" :validation-schema="filterSchema" @submit="filterSubmitHandler">
                                 <fieldset class="w-100 d-flex" style="column-gap: 10px;">
-                                    <fieldset class="primary-input-wrapper light-text-size">
+                                    <fieldset class="primary-input-wrapper light-text-size poppins-400">
                                         <!-- :rules="isRequired" -->
                                         <Field name="filter[price_from]" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
                                             <input min="0" v-bind="field" required id="filter[price_from]" name="filter[price_from]" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" style="width: 175px;" type="number" placeholder="">
@@ -34,7 +34,7 @@
                                         </Field>
                                         <label for="filter[price_from]" class="primary-placeholder secondary-text-color">From</label>
                                     </fieldset>
-                                    <fieldset class="primary-input-wrapper light-text-size">
+                                    <fieldset class="primary-input-wrapper light-text-size poppins-400">
                                         <!-- :rules="isRequired" -->
                                         <Field name="filter[price_to]" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
                                             <input min="0" v-bind="field" required id="filter[price_to]" name="filter[price_to]" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" style="width: 175px;" type="number" placeholder="">
@@ -51,7 +51,7 @@
                                 <fieldset style="width: 124px; align-self: flex-end;">
                                     <PrimaryBtnComponent class="w-100" btnType="submit" :disabled="isSubmitting">
                                         <template v-slot:btnContent>
-                                            <p class="light-text-size third-text-color">
+                                            <p class="light-text-size poppins-400 third-text-color">
                                                 Apply
                                             </p>
                                         </template>
@@ -93,7 +93,7 @@
             </div>
         </section>
         <section>
-            <div v-if="filterValues['filter[price_from]'] || filterValues['filter[price_to]']" class="d-flex align-items-center gap-2 primary-border light-text-size" style="padding: 8px 10px; border-radius: 50px; width: fit-content;">
+            <div v-if="filterValues['filter[price_from]'] || filterValues['filter[price_to]']" class="d-flex align-items-center gap-2 primary-border light-text-size poppins-400" style="padding: 8px 10px; border-radius: 50px; width: fit-content;">
                 <p>
                     {{ `price: ${filterValues['filter[price_from]']}-${filterValues['filter[price_to]']}` }}
                 </p>
@@ -121,9 +121,9 @@
             <vue-awesome-paginate
                 :total-items="productsPagingInfo.total"
                 :items-per-page="productsPagingInfo.limit"
-                :max-pages-shown="2"
+                :max-pages-shown="3"
                 v-model="productsPagingInfo.offset"
-                :hide-prev-next-when-ends="false"
+                :hide-prev-next-when-ends="true"
                 :disable-breakpoint-buttons="false"
                 @click="paginationClickHandler"
                 class="my-3"

@@ -1,5 +1,5 @@
 <template>
-    <aside v-if="isOpen" class="side-popout-wrapper">
+    <aside v-if="isOpen" @click="checkClick" class="side-popout-wrapper">
         <div class="side-popout-content">
             <div class="d-flex align-items-center justify-content-between">
                 <slot name="title">
@@ -7,9 +7,11 @@
                 </slot>
                 <img @click="closeCartSidePopout" src="@/assets/images/cartImages/cartClose.svg" class="cursor-pointer" alt="close Cart">
             </div>
-            <slot name="sideContent">
-
-            </slot>
+            <div class="h-100 w-100">
+                <slot name="sideContent">
+    
+                </slot>
+            </div>
         </div>
     </aside>
 </template>
@@ -34,8 +36,13 @@ export default {
         }
     },
     methods: {
+        checkClick(event){
+            if(event.target.classList.contains("side-popout-wrapper")){
+                this.closeCartSidePopout();
+            }            
+        },
         closeCartSidePopout(){
-            this.$store.state.isCartOpen = false;
+            this.$emit("closePopout");
         }
     }
 }
@@ -44,19 +51,21 @@ export default {
 <style lang="scss">
 .side-popout-wrapper{
     z-index: 100;
-    isolation: isolate;
-    position: relative;
+    // isolation: isolate;
     width: 100%;
     height: 100dvh;
     position: fixed;
+    // position: relative;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: flex-end;
     background-color: transparent;
     animation: smoothAppear 0.3s ease-out forwards;
     .side-popout-content{
-        position: absolute;
-        top: 0;
-        right: 0;
+        // position: absolute;
+        // top: 0;
+        // right: 0;
         transform: translateX(100%);
         width: 540px;
         height: 100%;

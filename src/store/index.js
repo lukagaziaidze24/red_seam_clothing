@@ -57,6 +57,18 @@ export default createStore({
         quantity,
       });
     },
+    // for cart side popout >>
+    getItemsFromCart(){
+      return axios.get("cart");
+    },
+    changeCartProductQuantity({state}, {currentValue, id}){
+      return axios.patch(`cart/products/${id}`, {
+        quantity: currentValue,
+      });
+    },
+    removeProductFromCart({state}, id){
+      return axios.delete(`/cart/products/${id}`);
+    },
   },
   modules: {
   }

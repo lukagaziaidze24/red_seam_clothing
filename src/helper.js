@@ -1,3 +1,6 @@
+import axios from "axios";
+import store from "./store";
+import router from "./router";
 export default {
     methods: {
         data(){
@@ -46,6 +49,13 @@ export default {
                 return errorsArray;
             }
             return true;
+        },
+        handleUnauthenticatedUser(){
+            window.localStorage.removeItem("BearerToken");
+            window.localStorage.removeItem("userInfo");
+            axios.defaults.headers.common.Authorization = ``;
+            store.state.userInfo = null;
+            router.push("/login");
         },
     }
 }

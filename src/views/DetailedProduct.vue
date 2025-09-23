@@ -49,7 +49,7 @@
                     <template v-slot:btnContent>
                         <div class="d-flex align-items-center justify-content-center w-100" style="column-gap: 10px;">
                             <img src="@/assets/images/detailedProductImages/cart.svg" alt="cart">
-                            <p class="light-text-size third-text-color">
+                            <p class="light-text-size poppins-400 third-text-color">
                                 Add to cart
                             </p>
                         </div>
@@ -59,7 +59,7 @@
                     <template v-slot:btnContent>
                         <div class="d-flex align-items-center justify-content-center w-100" style="column-gap: 10px;">
                             <img src="@/assets/images/detailedProductImages/cart.svg" alt="cart">
-                            <p class="light-text-size third-text-color">
+                            <p class="light-text-size poppins-400 third-text-color">
                                 Out of stock
                             </p>
                         </div>
@@ -131,11 +131,7 @@ export default {
 
             }).catch((error) => {
                 if(error?.response?.status == 401){
-                    window.localStorage.removeItem("BearerToken");
-                    window.localStorage.removeItem("userInfo");
-                    axios.defaults.headers.common.Authorization = ``;
-                    this.$store.state.userInfo = null;
-                    this.$router.push("/login");
+                    this.$helper.methods.handleUnauthenticatedUser();
                 }
             }).finally(() => {
                 this.addingToCart = false;

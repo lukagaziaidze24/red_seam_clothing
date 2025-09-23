@@ -2,13 +2,13 @@
     --primary-background-color: #FFFFFF;
     --secondary-background-color: #FF4000;
     --third-background-color: #F8F6F7;
-    --fourth-background-color: rgba(16, 21, 31, 0.5);
+    --fourth-background-color: #10151f80;
     --primary-border-color: #E1DFE1;
     --primary-text-color: #10151F;
     --secondary-text-color: #3E424A;
     --third-text-color: #FFFFFF;
     --fourth-text-color: #FF4000;
-
+    --fifth-text-color: #3E424A;
 }
 .main-container{
     max-width: 1920px;
@@ -44,6 +44,9 @@
 .fourth-text-color{
     color: var(--fourth-text-color) !important;
 }
+.fifth-text-color{
+    color: var(--fifth-text-color) !important;
+}
 
 
 
@@ -55,7 +58,6 @@
 .light-text-size{
     font-size: 14px;
     line-height: 100%;
-    font-family: "poppins-400" !important;
 }
 
 .standard-text-size{
@@ -82,6 +84,9 @@
 .primary-border{
     border: 1px solid var(--primary-border-color);
     border-radius: 8px;
+}
+.secondary-border{
+    border: 1px solid var(--primary-border-color);
 }
 .cursor-pointer{
     cursor: pointer;
@@ -241,4 +246,14 @@
         overflow: visible !important;
     }
 
+}
+// for unvisible scrollbar >>
+.unvisible-scrollbar{
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    &::-webkit-scrollbar-thumb{
+        display: none;
+    }
 }

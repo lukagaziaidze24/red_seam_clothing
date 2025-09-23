@@ -18,10 +18,10 @@
                                         <img v-if="!this.avatarImageSrcHolder" src="@/assets/images/registerImages/unknownAvatar.svg" alt="profile photo preview">
                                         <img v-if="this.avatarImageSrcHolder" style="width: 100%; height: 100%; object-fit: cover;" :src="this.avatarImageSrcHolder" alt="Avatar">
                                     </div>
-                                    <p v-if="!this.avatarImageSrcHolder" class="light-text-size secondary-text-color" id="upload-text">Upload image</p>
-                                    <p v-if="this.avatarImageSrcHolder" class="light-text-size secondary-text-color" aria-label="upload new image">Upload new</p>
+                                    <p v-if="!this.avatarImageSrcHolder" class="light-text-size poppins-400 secondary-text-color" id="upload-text">Upload image</p>
+                                    <p v-if="this.avatarImageSrcHolder" class="light-text-size poppins-400 secondary-text-color" aria-label="upload new image">Upload new</p>
                                 </label>
-                                <p v-if="this.avatarImageSrcHolder" @click="removeAvatarImage()" class="light-text-size secondary-text-color cursor-pointer" aria-label="remove image">Remove</p>
+                                <p v-if="this.avatarImageSrcHolder" @click="removeAvatarImage()" class="light-text-size poppins-400 secondary-text-color cursor-pointer" aria-label="remove image">Remove</p>
                             </fieldset>
 
 
@@ -35,7 +35,7 @@
                                 </ul>
                             </Field>
                         </fieldset>
-                        <fieldset class="primary-input-wrapper light-text-size">
+                        <fieldset class="primary-input-wrapper light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="username" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
                                 <input v-bind="field" required id="username" name="username" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="text" placeholder="">
@@ -47,7 +47,7 @@
                             </Field>
                             <label for="username" class="primary-placeholder secondary-text-color">Username <span class="fourth-text-color">*</span></label>
                         </fieldset>
-                        <fieldset class="primary-input-wrapper light-text-size">
+                        <fieldset class="primary-input-wrapper light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="email" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
                                 <input v-bind="field" required id="email" name="email" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="email" placeholder="">
@@ -59,7 +59,7 @@
                             </Field>
                             <label for="email" class="primary-placeholder secondary-text-color">Email <span class="fourth-text-color">*</span></label>
                         </fieldset>
-                        <fieldset class="primary-input-wrapper with-show-button light-text-size">
+                        <fieldset class="primary-input-wrapper with-show-button light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="password" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
                                 <input v-bind="field" required id="password" name="password" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
@@ -74,7 +74,7 @@
                                 <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
                             </button>
                         </fieldset>
-                        <fieldset class="primary-input-wrapper with-show-button light-text-size">
+                        <fieldset class="primary-input-wrapper with-show-button light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="password_confirmation" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
                                 <input v-bind="field" required id="password_confirmation" name="password_confirmation" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
@@ -93,13 +93,13 @@
                     <fieldset class="d-flex flex-column align-items-center" style="row-gap: 24px;">
                         <PrimaryBtnComponent class="w-100" btnType="submit" :disabled="isSubmitting">
                             <template v-slot:btnContent>
-                                <p class="light-text-size third-text-color">
+                                <p class="light-text-size poppins-400 third-text-color">
                                     Register
                                 </p>
                             </template>
                         </PrimaryBtnComponent>
                         <p class="d-flex align-items-center column-gap-2">
-                            <span class="light-text-size secondary-text-color">Already member?</span>
+                            <span class="light-text-size poppins-400 secondary-text-color">Already member?</span>
                             <router-link to="/login" class="light-text-size fourth-text-color poppins-500">Log in</router-link>
                         </p>
                     </fieldset>

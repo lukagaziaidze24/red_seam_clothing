@@ -12,7 +12,7 @@
                 <p class="primary-text-color before-light-text-size poppins-500">login</p>
             </router-link>
             <div v-else class="d-flex align-items-center" style="column-gap: 20px;">
-                <img class="cursor-pointer" src="@/assets/images/headerImages/cart.svg" alt="cart" title="cart" aria-label="cart panel">
+                <img @click="openCartSidePopout" class="cursor-pointer" src="@/assets/images/headerImages/cart.svg" alt="cart" title="cart" aria-label="cart panel" :aria-expanded="this.$store.state.isCartOpen">
                 <img v-if="userInfo?.avatar" class="profile-image cursor-pointer" :src="userInfo?.avatar??null" alt="profile" title="profile" aria-label="profile">
                 <img v-else class="profile-image cursor-pointer" src="@/assets/images/headerImages/unknownProfile.svg" alt="profile" title="default image" aria-label="profile">
             </div>
@@ -27,6 +27,11 @@ export default {
             userInfo: "getUserInfo"
         })
     },
+    methods: {
+        openCartSidePopout(){
+            this.$store.state.isCartOpen = true;
+        }
+    }
 }
 </script>
 <style lang="scss">

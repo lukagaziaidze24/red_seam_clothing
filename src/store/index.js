@@ -4,10 +4,14 @@ import axios from 'axios';
 export default createStore({
   state: {
     userInfo: null,
+    isCartOpen: false,
   },
   getters: {
     getUserInfo: (state) => {
       return state.userInfo;
+    },
+    getIsCartOpen: (state) => {
+      return state.isCartOpen;
     }
   },
   mutations: {

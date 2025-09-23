@@ -68,7 +68,7 @@
                 <hr class="primary-border" style="margin: 0;">
                 <article class="d-flex flex-column align-item-stretch" style="row-gap: 7px;">
                     <hgroup class="d-flex align-items-center justify-content-between">
-                        <h6 class="poppins-500" style="font-size: 20px; line-height: 100%;">Details</h6>
+                        <h6 class="before-extra-large-text poppins-500">Details</h6>
                         <img :src="productInfo.brand.image" alt="product brand" style="max-width: 109px; max-height: 61px;">
                     </hgroup>
                     <div class="d-flex flex-column" style="row-gap: 19px;">

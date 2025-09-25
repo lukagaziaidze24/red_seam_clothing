@@ -111,7 +111,6 @@
 }
     // primary input >> 
 .primary-input-wrapper{
-    position: relative;
     width: 100%;
     &:not(.with-show-button){
         .show-button{
@@ -119,46 +118,57 @@
         }
     }
     &.with-show-button{
+        .actuall-input-wrapper{
 
-        .show-button{
-            display: inline-block;
-            position: absolute; 
-            top: 12px;
-            right: 12px;
-            margin-top: 2px;
-            cursor: pointer;
+            .show-button{
+                display: inline-block;
+                position: absolute; 
+                // top: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 12px;
+                cursor: pointer;
+            }
         }
+
     }
-    .primary-input{
+    .actuall-input-wrapper{
+        position: relative;
         width: 100%;
-        border: 1px solid var(--primary-border-color);
-        border-radius: 8px;
-        padding: 12px;
-        &.invalid{
-            border: 1px solid var(--fourth-text-color);
+
+        .primary-input{
+            vertical-align: bottom;
+            width: 100%;
+            border: 1px solid var(--primary-border-color);
+            border-radius: 8px;
+            padding: 12px;
+            &.invalid{
+                border: 1px solid var(--fourth-text-color);
+            }
+        }
+
+        &:has(.primary-input:placeholder-shown){
+            label.primary-placeholder{
+                display: inline-block;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                // top: 12px;
+                left: 12px;
+                z-index: 1;
+                opacity: 1;
+                background-color: transparent;
+                margin-left: 1px;
+                margin-top: 1px;
+            }
+        }
+        &:has(.primary-input){
+            label.primary-placeholder{
+                display: none;
+            }
         }
     }
     
-    &:has(.primary-input:placeholder-shown){
-        label.primary-placeholder{
-            display: inline-block;
-            position: absolute;
-            // top: 50%;
-            // transform: translateY(-50%);
-            top: 12px;
-            left: 12px;
-            z-index: 1;
-            opacity: 1;
-            background-color: transparent;
-            margin-left: 1px;
-            margin-top: 5px;
-        }
-    }
-    &:has(.primary-input){
-        label.primary-placeholder{
-            display: none;
-        }
-    }
 }
 
 

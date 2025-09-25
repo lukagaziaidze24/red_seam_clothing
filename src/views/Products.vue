@@ -25,26 +25,33 @@
                                     <fieldset class="primary-input-wrapper light-text-size poppins-400">
                                         <!-- :rules="isRequired" -->
                                         <Field name="filter[price_from]" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
-                                            <input min="0" v-bind="field" required id="filter[price_from]" name="filter[price_from]" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" style="width: 175px;" type="number" placeholder="">
+                                            <div class="actuall-input-wrapper">
+                                                <input min="0" v-bind="field" required id="filter[price_from]" name="filter[price_from]" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" style="width: 175px;" type="number" placeholder="">
+                                                <label for="filter[price_from]" class="primary-placeholder secondary-text-color">From</label>
+
+                                            </div>
+
                                             <ul class="d-flex flex-column gap-1 mt-1">
                                                 <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                                     <p>{{ errorMsg }}</p>
                                                 </li>
                                             </ul>
                                         </Field>
-                                        <label for="filter[price_from]" class="primary-placeholder secondary-text-color">From</label>
                                     </fieldset>
                                     <fieldset class="primary-input-wrapper light-text-size poppins-400">
                                         <!-- :rules="isRequired" -->
                                         <Field name="filter[price_to]" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
-                                            <input min="0" v-bind="field" required id="filter[price_to]" name="filter[price_to]" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" style="width: 175px;" type="number" placeholder="">
+                                            <div class="actuall-input-wrapper">
+                                                <input min="0" v-bind="field" required id="filter[price_to]" name="filter[price_to]" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" style="width: 175px;" type="number" placeholder="">
+                                                <label for="filter[price_to]" class="primary-placeholder secondary-text-color">To</label>
+                                            </div>
+
                                             <ul class="d-flex flex-column gap-1 mt-1">
                                                 <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                                     <p>{{ errorMsg }}</p>
                                                 </li>
                                             </ul>
                                         </Field>
-                                        <label for="filter[price_to]" class="primary-placeholder secondary-text-color">To</label>
                                     </fieldset>
                                     
                                 </fieldset>

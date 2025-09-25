@@ -26,8 +26,8 @@
                                     <p class="before-light-text-size poppins-400 fifth-text-color">{{ cartProductObj.size }}</p>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <QuantityComponent :outerValue="cartProductObj.quantity" :id="cartProductObj.id" @quantityValueChanged="changeCartProductQuantity"/>
-                                    <p @click="removeProductFromCart(cartProductObj.id)" class="before-light-text-size poppins-400 fifth-text-color cursor-pointer">remove</p>
+                                    <QuantityComponent :outerValueObj="cartProductObj" :id="cartProductObj.id" @quantityValueChanged="changeCartProductQuantity"/>
+                                    <p @click="removeProductFromCart(cartProductObj)" class="before-light-text-size poppins-400 fifth-text-color cursor-pointer">remove</p>
                                 </div>
                             </div>
                         </article>
@@ -131,27 +131,32 @@ export default {
             this.closePopout();
             this.$router.push("/checkout");
         },
-        removeProductFromCart(id){
-            this.$store.dispatch("removeProductFromCart", id).then((response) => {
-                let changedProductObjIndex = this.cartProducts.findIndex((productObj) => {
-                    return productObj.id == id;
-                });
+        removeProductFromCart(cartProductObj){
+            let changedProductObjIndex = this.cartProducts.findIndex((productObj) => {
+                return productObj.id == cartProductObj.id && productObj.color == cartProductObj.color && productObj.size == cartProductObj.size;
+            });
+            let changedProductObj = this.cartProducts[changedProductObjIndex];
+            this.$store.dispatch("removeProductFromCart", {id: changedProductObj.id, color: changedProductObj.color, size: changedProductObj.size}).then((response) => {
                 this.cartProducts.splice(changedProductObjIndex, 1);
             }).catch((error) => {
-                this.closePopout();
-                this.$helper.methods.handleUnauthenticatedUser();
+                if(error?.response?.status == 401){
+                    this.closePopout();
+                    this.$helper.methods.handleUnauthenticatedUser();
+                }
             });
         },
-        changeCartProductQuantity({currentValue, id}){
-            this.$store.dispatch("changeCartProductQuantity", {currentValue, id}).then((response) => {
-                let changedProductObj = this.cartProducts.find((productObj) => {
-                    return productObj.id == id;
-                });
+        changeCartProductQuantity({currentValue, additionalInfo ,id}){
+            let changedProductObj = this.cartProducts.find((productObj) => {
+                return productObj.id == id && productObj.size == additionalInfo.size && productObj.color == additionalInfo.color;
+            });
+            this.$store.dispatch("changeCartProductQuantity", {currentValue, id, color: changedProductObj.color, size: changedProductObj.size}).then((response) => {
                 changedProductObj.quantity = currentValue;
                 changedProductObj.total_price = changedProductObj.quantity * changedProductObj.price;
             }).catch(() => {
-                this.closePopout();
-                this.$helper.methods.handleUnauthenticatedUser();
+                if(error?.response?.status == 401){
+                    this.closePopout();
+                    this.$helper.methods.handleUnauthenticatedUser();
+                }
             });
         },
         getItemsFromCart(){
@@ -161,8 +166,10 @@ export default {
                 console.log(response);
                 
             }).catch(() => {
-                this.closePopout();
-                this.$helper.methods.handleUnauthenticatedUser();
+                if(error?.response?.status == 401){
+                    this.closePopout();
+                    this.$helper.methods.handleUnauthenticatedUser();
+                }
             });
         },
         closePopout(){

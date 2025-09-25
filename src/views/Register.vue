@@ -38,56 +38,68 @@
                         <fieldset class="primary-input-wrapper light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="username" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
-                                <input v-bind="field" required id="username" name="username" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="text" placeholder="">
+                                <div class="actuall-input-wrapper">
+                                    <input v-bind="field" required id="username" name="username" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="text" placeholder="">
+                                    <label for="username" class="primary-placeholder secondary-text-color">Username <span class="fourth-text-color">*</span></label>
+                                </div>
+
                                 <ul class="d-flex flex-column gap-1 mt-1">
                                     <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                         <p>{{ errorMsg }}</p>
                                     </li>
                                 </ul>
                             </Field>
-                            <label for="username" class="primary-placeholder secondary-text-color">Username <span class="fourth-text-color">*</span></label>
                         </fieldset>
                         <fieldset class="primary-input-wrapper light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="email" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
-                                <input v-bind="field" required id="email" name="email" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="email" placeholder="">
+                                <div class="actuall-input-wrapper">
+                                    <input v-bind="field" required id="email" name="email" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="email" placeholder="">
+                                    <label for="email" class="primary-placeholder secondary-text-color">Email <span class="fourth-text-color">*</span></label>
+                                </div>
+
                                 <ul class="d-flex flex-column gap-1 mt-1">
                                     <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                         <p>{{ errorMsg }}</p>
                                     </li>
                                 </ul>
                             </Field>
-                            <label for="email" class="primary-placeholder secondary-text-color">Email <span class="fourth-text-color">*</span></label>
                         </fieldset>
                         <fieldset class="primary-input-wrapper with-show-button light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="password" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
-                                <input v-bind="field" required id="password" name="password" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
+                                <div class="actuall-input-wrapper">
+                                    <input v-bind="field" required id="password" name="password" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
+                                    <label for="password" class="primary-placeholder secondary-text-color">Password <span class="fourth-text-color">*</span></label>
+                                    <button type="button" class="show-button" @click="this.$helper.methods.toggleInput($event)">
+                                        <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
+                                    </button>
+                                </div>
+
                                 <ul class="d-flex flex-column gap-1 mt-1">
                                     <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                         <p>{{ errorMsg }}</p>
                                     </li>
                                 </ul>
                             </Field>
-                            <label for="password" class="primary-placeholder secondary-text-color">Password <span class="fourth-text-color">*</span></label>
-                            <button type="button" class="show-button" @click="this.$helper.methods.toggleInput($event)">
-                                <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
-                            </button>
                         </fieldset>
                         <fieldset class="primary-input-wrapper with-show-button light-text-size poppins-400">
                             <!-- :rules="isRequired" -->
                             <Field name="password_confirmation" value="" :validateOnInput="true" v-slot="{ field, errors, errorMessage, meta, isSubmitting }">
-                                <input v-bind="field" required id="password_confirmation" name="password_confirmation" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
+                                <div class="actuall-input-wrapper">
+                                    <input v-bind="field" required id="password_confirmation" name="password_confirmation" autocomplete="on" :class="['primary-input', 'secondary-text-color', {'invalid': errors.length > 0}]" type="password" placeholder="">
+                                    <label for="password_confirmation" class="primary-placeholder secondary-text-color">Confirm password <span class="fourth-text-color">*</span></label>
+                                    <button type="button" class="show-button" @click="this.$helper.methods.toggleInput($event)">
+                                        <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
+                                    </button>
+                                </div>
+
                                 <ul class="d-flex flex-column gap-1 mt-1">
                                     <li v-for="(errorMsg, i) of errors" class="primary-form-msg poppins-300 fourth-text-color">
                                         <p>{{ errorMsg }}</p>
                                     </li>
                                 </ul>
                             </Field>
-                            <label for="password_confirmation" class="primary-placeholder secondary-text-color">Confirm password <span class="fourth-text-color">*</span></label>
-                            <button type="button" class="show-button" @click="this.$helper.methods.toggleInput($event)">
-                                <img src="@/assets/images/inputImages/showButton.svg" alt="show-hide-password">
-                            </button>
                         </fieldset>
                     </fieldset>
                     <fieldset class="d-flex flex-column align-items-center" style="row-gap: 24px;">

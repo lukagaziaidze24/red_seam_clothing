@@ -14,9 +14,9 @@ export default {
         }
     },
     props: {
-        outerValue: {
-            type: Number,
-            default: 1,
+        outerValueObj: {
+            type: Object,
+            default: {},
         },
         id: {
             type: Number,
@@ -24,7 +24,7 @@ export default {
         }
     },
     mounted(){
-        this.currentValue = this.outerValue;
+        this.currentValue = this.outerValueObj.quantity;
     },
     methods: {
         increaseOrDecreaseValue(number){
@@ -34,6 +34,7 @@ export default {
             this.currentValue += number;
             this.$emit("quantityValueChanged", {
                 currentValue: this.currentValue,
+                additionalInfo: {...this.outerValueObj},
                 id: this.id,
             });
         }

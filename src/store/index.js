@@ -61,13 +61,24 @@ export default createStore({
     getItemsFromCart(){
       return axios.get("cart");
     },
-    changeCartProductQuantity({state}, {currentValue, id}){
+    changeCartProductQuantity({state}, {currentValue, id, color, size}){
       return axios.patch(`cart/products/${id}`, {
         quantity: currentValue,
+        color,
+        size,
       });
     },
-    removeProductFromCart({state}, id){
-      return axios.delete(`/cart/products/${id}`);
+    removeProductFromCart({state}, {id, color, size}){
+      return axios.delete(`/cart/products/${id}`, {
+        data: {
+          color,
+          size,
+        }
+      });
+    },
+    // for checkout page >>
+    checkoutProducts({state}, values){
+      return axios.post("cart/checkout", {...values});
     },
   },
   modules: {

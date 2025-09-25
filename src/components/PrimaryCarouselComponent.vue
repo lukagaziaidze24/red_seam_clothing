@@ -3,12 +3,12 @@
         <div class="images-scroll-wrapper">
             <ul class="d-flex flex-column align-items-stretch">
                 <li v-for="(data, i) of imagesArray" @click="makeImageOnThumbnail(data)" :class="['image-wrapper', 'cursor-pointer', {'selected': data.id == choosenImageObj.id }]">
-                    <img :src="data.imageURI" :alt="data.id">
+                    <img :src="data.imageURI" :alt="data.id" :aria-label="data.id">
                 </li>
             </ul>
         </div>
         <div v-if="choosenImageObj?.id" class="thumbnail-wrapper">
-            <img style="width: 100%; height: 100%;" :src="choosenImageObj.imageURI" :alt="choosenImageObj?.id">
+            <img style="width: 100%; height: 100%;" :src="choosenImageObj.imageURI" :alt="choosenImageObj?.id" :aria-label="choosenImageObj?.id">
         </div>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <ul class="colors-wrapper d-flex align-items-center" :style="{'--col-gap': columnGap}">
-        <li v-for="(data, i) of colorOptions" :class="['color-indicator-border', {'selected': choosenColorObj.id == data.id}, 'primary-transition', 'cursor-pointer']" :style="{'--color': data.color}" @click="setSelectedColorID(data)">
+        <li v-for="(data, i) of colorOptions" :aria-label="choosenColorObj.id" :class="['color-indicator-border', {'selected': choosenColorObj.id == data.id}, 'primary-transition', 'cursor-pointer']" :style="{'--color': data.color}" @click="setSelectedColorID(data)">
             <div class="color-indicator-border-helper primary-transition">
                 <div class="color-indicator-core">
     

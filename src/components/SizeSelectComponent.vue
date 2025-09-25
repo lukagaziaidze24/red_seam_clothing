@@ -1,6 +1,6 @@
 <template>
     <ul class="sizes-wrapper d-flex align-items-center" :style="{'--col-gap': columnGap}">
-        <li v-for="(data, i) of sizeOptions" :class="['size-indicator-wrapper', 'border-radius-10', 'primary-border', {'selected': choosenSizeObj.size == data.size}, 'primary-transition', 'cursor-pointer']" @click="setSelectedSizeID(data)">
+        <li v-for="(data, i) of sizeOptions" :aria-label="sizeOptions.size" :class="['size-indicator-wrapper', 'border-radius-10', 'primary-border', {'selected': choosenSizeObj.size == data.size}, 'primary-transition', 'cursor-pointer']" @click="setSelectedSizeID(data)">
             <p class="standard-text-size poppins-400 primary-text-color">
                 {{ data.size }}
             </p>

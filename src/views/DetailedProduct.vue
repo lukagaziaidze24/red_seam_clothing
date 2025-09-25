@@ -28,10 +28,10 @@
                         <SizeSelectComponent :sizeOptions="productInfo.available_sizes" @choosenNewSize="handleNewSize"/>
                     </article>
                     <article class="d-flex flex-column" style="row-gap: 16px;">
-                        <h6 class="standard-text-size poppins-400">
+                        <h6 id="quantity-label" class="standard-text-size poppins-400">
                             Quantity
                         </h6>
-                        <Multiselect name="quantity" id="quantity" v-model="quantityMultiselectObj.value" :options="quantityMultiselectObj.options" :mode="quantityMultiselectObj.mode"
+                        <Multiselect name="quantity" id="quantity" aria-labelledby="quantity-label" v-model="quantityMultiselectObj.value" :options="quantityMultiselectObj.options" :mode="quantityMultiselectObj.mode"
                             :searchable="false" :loading="false" :close-on-select="true" :object="false" :resolve-on-load="false" :min-chars="1"
                             :hideSelected="true" :canDeselect="false" :canClear="false" :required="false"
                             class="poppins-400" style="max-width: 70px; align-self: flex-start;" autocomplete="off" :placeholder="quantityMultiselectObj.placeholder" :disabled="quantityMultiselectObj.isDisabled" insert>
@@ -44,7 +44,6 @@
                         </Multiselect>
                     </article>
                 </div>
-                <!-- this.productInfo?.available_colors -->
                 <PrimaryBtnComponent v-if="this.productInfo?.available_colors?.length > 0 && this.productInfo?.available_sizes?.length > 0" :disabled="addingToCart" @click="addProductToCart()" class="w-100" btnType="button" paddingY="17.5px">
                     <template v-slot:btnContent>
                         <div class="d-flex align-items-center justify-content-center w-100" style="column-gap: 10px;">

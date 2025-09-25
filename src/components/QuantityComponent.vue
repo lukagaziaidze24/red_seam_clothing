@@ -1,9 +1,9 @@
 <template>
     <div class="quantity-wrapper secondary-border">
         <img v-if="currentValue <= 1" class="cursor-pointer" src="@/assets/images/quantityComponentImages/minus.svg" alt="minus" title="decrease quantity">
-        <img v-else @click="increaseOrDecreaseValue(-1)" class="cursor-pointer" src="@/assets/images/quantityComponentImages/minus-active.svg" alt="minus" title="decrease quantity">
+        <img v-else @click="increaseOrDecreaseValue(-1)" class="cursor-pointer" src="@/assets/images/quantityComponentImages/minus-active.svg" alt="minus" title="decrease quantity" aria-label="decrease quantity">
         <p>{{ currentValue }}</p>
-        <img @click="increaseOrDecreaseValue(1)" class="cursor-pointer" src="@/assets/images/quantityComponentImages/plus.svg" alt="plus" title="increase quantity">
+        <img @click="increaseOrDecreaseValue(1)" class="cursor-pointer" src="@/assets/images/quantityComponentImages/plus.svg" alt="plus" title="increase quantity" aria-label="increase quantity">
     </div>
 </template>
 <script>

@@ -75,19 +75,19 @@
                     <template v-slot:dropdownHeader>
                         <div class="d-flex align-items-center" style="column-gap: 8px;">
                             <p v-if="choosenSortID == 'created_at'" id="filter-text" class="standard-text-size poppins-400">Sort by</p>
-                            <p v-else id="filter-text" class="standard-text-size poppins-400">
+                            <p v-else id="sort-text" class="standard-text-size poppins-400">
                                 {{ 
                                     sortingOptionsArray.find((optionObj) => optionObj.setId == choosenSortID ).content
                                  }}
                             </p>
-                            <img src="@/assets/images/dropDownImages/arrow.svg" alt="filter" aria-labelledby="filter-text">
+                            <img src="@/assets/images/dropDownImages/arrow.svg" alt="filter" aria-labelledby="sort-text">
                         </div>
                     </template>
                     <template v-slot:dropdownBody>
 
                         <div class="d-flex flex-column" style="row-gap: 8px;">
                             <h6 class="standard-text-size poppins-600">
-                                Select price
+                                Sort by
                             </h6>
                             <ul class="d-flex flex-column align-items-start standard-text-size poppins-400 cursor-pointer">
                                 <li v-for="(data, i) of sortingOptionsArray" :class="['sort-li', 'primary-transition', 'border-radius-5', {'choosen': data.isChoosen}]" @click="checkSortingOptionHandler(data)">
@@ -112,9 +112,9 @@
                 <li v-for="(data, i) of productsInfoArray" :key="i" style="width: 100%;" @click="seeDetailedProduct(data)" class="cursor-pointer">
                     <figure class="d-flex flex-column align-items-stretch" style="row-gap: 12px;">
                         <div class="w-100 h-100 border-radius-10" style="background-color: var(--third-background-color); overflow: hidden;">
-                            <img :src="data.cover_image" :alt="data.name" style="width: 100%; max-height: 549px; height: 100%; mix-blend-mode: multiply;">
+                            <img :src="data.cover_image" :alt="data.name" style="width: 100%; max-height: 549px; height: 100%; mix-blend-mode: multiply;" aria-labelledby="productImageLabel">
                         </div>
-                        <figcaption class="d-flex flex-column align-items-start" style="row-gap: 4px;">
+                        <figcaption id="productImageLabel" class="d-flex flex-column align-items-start" style="row-gap: 4px;">
                             <p class="after-standard-text-size poppins-500">
                                 {{ data.name }}
                             </p>
@@ -131,7 +131,7 @@
                 :max-pages-shown="3"
                 v-model="productsPagingInfo.offset"
                 :hide-prev-next-when-ends="true"
-                :disable-breakpoint-buttons="false"
+                :disable-breakpoint-buttons="true"
                 @click="paginationClickHandler"
                 class="my-3"
             >

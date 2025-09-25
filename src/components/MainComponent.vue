@@ -10,7 +10,7 @@
         </template>
         <template v-slot:sideContent v-if="isAuthenticated">
             <div v-if="cartProducts.length > 0" style="padding-top: 63px; height: calc(100% - 32px);" class="d-flex flex-column align-items-stretch justify-content-between">
-                <ul class="d-flex flex-column align-items-center unvisible-scrollbar" style="row-gap: 36px; max-height: 600px;">
+                <ul class="d-flex flex-column align-items-center primary-scrollbar with-padding" style="row-gap: 36px; max-height: 600px;">
                     <li v-for="(cartProductObj, i) of cartProducts" class="w-100">
                         <article style="height: min-content; column-gap: 17px;" class="d-flex justify-content-stretch">
                             <div style="max-width: 100px; max-height: 134px; background-color: var(--third-background-color);" class="primary-border border-radius-10">

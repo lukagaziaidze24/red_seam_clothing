@@ -1,12 +1,12 @@
 <template>
     <main class="main-container with-padding d-flex flex-column align-items-stretch" style="row-gap: 42px; margin-top: 72px;">
         <h2 class="extra-large-text primary-text-color">checkout</h2>
-        <div class="checkout-content-grid-wrapper" v-if="cartProducts.length > 0">
+        <div class="checkout-content-grid-wrapper">
             <section class="checkout-form-wrapper">
                 <h3 class="poppins-500 secondary-text-color" style="font-size: 22px; line-height: 100%;">
                     Order details
                 </h3>
-                <Form ref="checkoutForm" :validation-schema="checkoutSchema" @submit="checkoutProducts" v-slot="{isSubmitting}" class="d-flex flex-column align-items-stretch" style="row-gap: 33px; max-width: 578px;">
+                <Form v-if="cartProducts.length > 0" ref="checkoutForm" :validation-schema="checkoutSchema" @submit="checkoutProducts" v-slot="{isSubmitting}" class="d-flex flex-column align-items-stretch" style="row-gap: 33px; max-width: 578px;">
 
 
                     <fieldset class="d-flex align-items-center" style="column-gap: 24px;">
@@ -106,7 +106,8 @@
                 </Form>
             </section>
             <section class="d-flex flex-column align-items-stretch justify-content-between">
-                <ul class="d-flex flex-column align-items-center unvisible-scrollbar" style="row-gap: 36px; max-height: 304px;">
+                <p class="before-extra-large-text poppins-600">No items in the cart</p>
+                <ul v-if="cartProducts.length > 0" class="d-flex flex-column align-items-center primary-scrollbar with-padding" style="row-gap: 36px; max-height: 304px;">
                     <li v-for="(cartProductObj, i) of cartProducts" class="w-100">
                         <article style="height: min-content; column-gap: 17px;" class="d-flex justify-content-stretch">
                             <div style="max-width: 100px; max-height: 134px; background-color: var(--third-background-color);" class="primary-border border-radius-10">
@@ -129,7 +130,7 @@
                         </article>
                     </li>
                 </ul>
-                <div class="d-flex flex-column align-items-stretch" style="row-gap: 102px;">
+                <div v-if="cartProducts.length > 0" class="d-flex flex-column align-items-stretch" style="row-gap: 102px;">
                     <ul class="d-flex flex-column align-items-stretch fifth-text-color" style="row-gap: 16px;">
                         <li class="w-100 d-flex justify-content-between">
                             <p class="standard-text-size poppins-400">Items subtotal</p>

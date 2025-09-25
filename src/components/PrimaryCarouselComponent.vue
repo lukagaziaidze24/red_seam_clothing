@@ -1,6 +1,6 @@
 <template>
     <div class="carousel-grid-wrapper w-100" :style="{'--height': height}">
-        <div class="images-scroll-wrapper">
+        <div class="images-scroll-wrapper primary-scrollbar with-padding">
             <ul class="d-flex flex-column align-items-stretch">
                 <li v-for="(data, i) of imagesArray" @click="makeImageOnThumbnail(data, i)" :class="['image-wrapper', 'cursor-pointer', {'selected': data.id == choosenImageObj.id }]">
                     <img :src="data.imageURI" :alt="data.id" :aria-label="data.id">
@@ -13,10 +13,6 @@
                 <img :src="data.imageURI" :alt="data.id" :aria-label="data.id">
             </li>
         </ul>
-
-        <!-- <div v-if="choosenImageObj?.id" class="thumbnail-wrapper">
-            <img :src="choosenImageObj.imageURI" :alt="choosenImageObj?.id" :aria-label="choosenImageObj?.id">
-        </div> -->
     </div>
 </template>
 <script>
@@ -50,7 +46,18 @@ export default {
         outsideChooseTrigger: {
             handler(newVal){
                 if(newVal != this.choosenImageObj.id){
+                    let elementIndex = this.imagesArray.findIndex((imageObj) => {return imageObj.id == newVal});
+
+                    let scrollContext = document.getElementById("thumbnails-scroll-wrapper");
+                    let thumbnailElements = Array.from(scrollContext.children);
+                    
+
+                    thumbnailElements[elementIndex].scrollIntoView(
+                        { behavior: "smooth", block: "center", inline: "start", container: "nearest" }
+                    );
                     this.choosenImageObj = {...this.imagesArray.find((imageObj) => imageObj.id == newVal)};
+
+                    this.$emit("choosenNewImage", this.choosenImageObj);
                 }
             }
         }
@@ -62,15 +69,12 @@ export default {
         makeImageOnThumbnail(imageData, elementIndex){
             let scrollContext = document.getElementById("thumbnails-scroll-wrapper");
             let thumbnailElements = Array.from(scrollContext.children);
-            // console.log(thumbnailElements);
-            // console.log(thumbnailElements[elementIndex].offsetTop);
             
 
             thumbnailElements[elementIndex].scrollIntoView(
                 { behavior: "smooth", block: "center", inline: "start", container: "nearest" }
             );
 
-            // scrollContext.scrollTop = thumbnailElements[elementIndex].offsetTop;
             this.choosenImageObj = {...imageData};
             this.$emit("choosenNewImage", this.choosenImageObj);
         }
@@ -87,12 +91,6 @@ export default {
 
     .images-scroll-wrapper{
         overflow-y: auto;
-        &::-webkit-scrollbar{
-            display: none;
-        }
-        &::-webkit-scrollbar-thumb{
-            display: none;
-        }
         ul{
             row-gap: 9px;
             .image-wrapper{
@@ -129,21 +127,5 @@ export default {
 
 
 
-
-
-
-
-
-    .thumbnail-wrapper{
-        width: 100%;
-        height: 100%;
-        background-color: var(--third-background-color);
-        img{
-            mix-blend-mode: multiply;
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-    }
 }
 </style>

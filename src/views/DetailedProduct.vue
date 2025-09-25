@@ -149,6 +149,7 @@ export default {
         getSingleProduct(){
             this.$store.dispatch("getSingleProduct", this.$route.params.productID).then((response) => {
                 this.productInfo = response.data;
+                document.title = this.productInfo.name;
                 this.productInfo.available_colors = this.productInfo?.available_colors?.map((colorID) => {
                     return {
                         id: colorID,

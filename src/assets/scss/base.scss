@@ -258,12 +258,18 @@
 
 }
 // for unvisible scrollbar >>
-.unvisible-scrollbar{
+.primary-scrollbar{
     overflow-y: auto;
     &::-webkit-scrollbar{
-        display: none;
+        width: 5px;
+        background-color: var(--third-background-color);
+        border-radius: 5px;
     }
     &::-webkit-scrollbar-thumb{
-        display: none;
+        background-color: var(--secondary-background-color);
+        border-radius: 5px;
+    }
+    &.with-padding{
+        padding-right: 5px !important;
     }
 }

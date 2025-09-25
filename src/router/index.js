@@ -16,26 +16,41 @@ const routes = [
         path: '/',
         name: 'Products',
         component: Products,
+        meta: {
+          title: "products",
+        }
       },
       {
         path: '/login',
         name: 'Login',
         component: Login,
+        meta: {
+          title: "login",
+        }
       },
       {
         path: '/register',
         name: 'Register',
         component: Register,
+        meta: {
+          title: "register",
+        }
       },
       {
         path: '/detailedProduct/:productID',
         name: 'detailedProduct',
         component: DetailedProduct,
+        // meta: {
+        //   title: "products",
+        // }
       },
       {
         path: '/checkout',
         name: 'Checkout',
         component: Checkout,
+        meta: {
+          title: "checkout",
+        }
       },
     ]
   },
@@ -57,5 +72,12 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if(to?.meta?.title){
+    document.title = to.meta.title;
+  }
+  next();
+});
 
 export default router

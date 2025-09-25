@@ -127,7 +127,7 @@ export default {
                 quantity: this.quantityMultiselectObj.value,
                 product: this.$route.params.productID,
             }).then((response) => {
-
+                this.$store.state.isCartOpen = true;
             }).catch((error) => {
                 if(error?.response?.status == 401){
                     this.$helper.methods.handleUnauthenticatedUser();

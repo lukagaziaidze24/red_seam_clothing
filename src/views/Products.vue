@@ -132,6 +132,8 @@
                 v-model="productsPagingInfo.offset"
                 :hide-prev-next-when-ends="true"
                 :disable-breakpoint-buttons="true"
+                :show-breakpoint-buttons="true" 
+                :show-ending-buttons="false"
                 @click="paginationClickHandler"
                 class="my-3"
             >

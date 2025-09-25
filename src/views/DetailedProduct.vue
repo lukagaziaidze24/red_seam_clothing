@@ -9,7 +9,7 @@
             </section>
             <section class="w-50 d-flex flex-column" style="row-gap: 56px;">
                 <hgroup class="d-flex flex-column poppins-600" style="font-size: 32px; line-height: 100%; row-gap: 21px;">
-                    <h2 class="primary-text-color">
+                    <h2 class="primary-text-color text-capitalize">
                         {{ productInfo.name }}
                     </h2>
                     <p class="primary-text-color">{{ `${productInfo.price}$` }}</p>

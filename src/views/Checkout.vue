@@ -106,7 +106,6 @@
                 </Form>
             </section>
             <section class="d-flex flex-column align-items-stretch justify-content-between">
-                <p class="before-extra-large-text poppins-600">No items in the cart</p>
                 <ul v-if="cartProducts.length > 0" class="d-flex flex-column align-items-center primary-scrollbar with-padding" style="row-gap: 36px; max-height: 304px;">
                     <li v-for="(cartProductObj, i) of cartProducts" class="w-100">
                         <article style="height: min-content; column-gap: 17px;" class="d-flex justify-content-stretch">
@@ -116,7 +115,7 @@
                             <div class="w-100 d-flex flex-column justify-content-between" style="padding-block: 11px;">
                                 <div class="w-100 d-flex flex-column" style="row-gap: 10px;">
                                     <div id="checkout-product-label" class="d-flex align-items-center justify-content-between">
-                                        <h6 class="light-text-size primary-text-color poppins-500">{{ cartProductObj.name }}</h6>
+                                        <h6 class="light-text-size primary-text-color poppins-500 text-capitalize">{{ cartProductObj.name }}</h6>
                                         <span class="after-standard-text-size primary-text-color poppins-500">{{ `$ ${cartProductObj.total_price}` }}</span>
                                     </div>
                                     <p class="before-light-text-size poppins-400 fifth-text-color">{{ cartProductObj.color }}</p>
@@ -130,6 +129,7 @@
                         </article>
                     </li>
                 </ul>
+                <p v-else class="before-extra-large-text poppins-600">No items in the cart</p>
                 <div v-if="cartProducts.length > 0" class="d-flex flex-column align-items-stretch" style="row-gap: 102px;">
                     <ul class="d-flex flex-column align-items-stretch fifth-text-color" style="row-gap: 16px;">
                         <li class="w-100 d-flex justify-content-between">

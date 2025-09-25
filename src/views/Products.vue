@@ -115,10 +115,10 @@
                             <img :src="data.cover_image" :alt="data.name" style="width: 100%; max-height: 549px; height: 100%; mix-blend-mode: multiply;" aria-labelledby="productImageLabel">
                         </div>
                         <figcaption id="productImageLabel" class="d-flex flex-column align-items-start" style="row-gap: 4px;">
-                            <p class="after-standard-text-size poppins-500">
+                            <p class="after-standard-text-size poppins-500 text-capitalize">
                                 {{ data.name }}
                             </p>
-                            <p class="after-standard-text-size poppins-500">
+                            <p class="standard-text-size poppins-500">
                                 {{ `${data.price}$` }}
                             </p>
                         </figcaption>

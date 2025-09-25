@@ -10,7 +10,7 @@
         </template>
         <template v-slot:sideContent v-if="isAuthenticated">
             <div v-if="cartProducts.length > 0" style="padding-top: 63px; height: calc(100% - 32px);" class="d-flex flex-column align-items-stretch justify-content-between">
-                <ul class="d-flex flex-column align-items-center primary-scrollbar with-padding" style="row-gap: 36px; max-height: 600px;">
+                <ul class="d-flex flex-column align-items-center primary-scrollbar with-padding" style="row-gap: 36px; height: 600px;">
                     <li v-for="(cartProductObj, i) of cartProducts" class="w-100">
                         <article style="height: min-content; column-gap: 17px;" class="d-flex justify-content-stretch">
                             <div style="max-width: 100px; max-height: 134px; background-color: var(--third-background-color);" class="primary-border border-radius-10">
@@ -19,7 +19,7 @@
                             <div class="w-100 d-flex flex-column justify-content-between" style="padding-block: 11px;">
                                 <div class="w-100 d-flex flex-column" style="row-gap: 10px;">
                                     <div id="cart-product-label" class="d-flex align-items-center justify-content-between">
-                                        <h6 class="light-text-size primary-text-color poppins-500">{{ cartProductObj.name }}</h6>
+                                        <h6 class="light-text-size primary-text-color poppins-500 text-capitalize">{{ cartProductObj.name }}</h6>
                                         <span class="after-standard-text-size primary-text-color poppins-500">{{ `$ ${cartProductObj.total_price}` }}</span>
                                     </div>
                                     <p class="before-light-text-size poppins-400 fifth-text-color">{{ cartProductObj.color }}</p>

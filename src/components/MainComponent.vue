@@ -152,7 +152,7 @@ export default {
             this.$store.dispatch("changeCartProductQuantity", {currentValue, id, color: changedProductObj.color, size: changedProductObj.size}).then((response) => {
                 changedProductObj.quantity = currentValue;
                 changedProductObj.total_price = changedProductObj.quantity * changedProductObj.price;
-            }).catch(() => {
+            }).catch((error) => {
                 if(error?.response?.status == 401){
                     this.closePopout();
                     this.$helper.methods.handleUnauthenticatedUser();
@@ -165,7 +165,7 @@ export default {
                 this.cartProducts = response.data;
                 console.log(response);
                 
-            }).catch(() => {
+            }).catch((error) => {
                 if(error?.response?.status == 401){
                     this.closePopout();
                     this.$helper.methods.handleUnauthenticatedUser();

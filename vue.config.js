@@ -7,5 +7,8 @@ module.exports = defineConfig({
       }
     }
   },
-  transpileDependencies: true
+  transpileDependencies: true,
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/red_seam_clothing/'
+    : '/',
 })

@@ -161,22 +161,45 @@
             </section>
         </div>
     </main>
+    <PrimaryModalComponent :showModal="showModal" @closeModal="closeModal">
+        <template v-slot:modal-content>
+            <div class="d-flex flex-column align-items-center" style="margin-top: 44px;">
+                <img src="@/assets/images/modalImages/modalSucces.svg" alt="success">
+                <hgroup class="d-flex flex-column align-items-center" style="row-gap: 16px; margin-top: 40px;">
+                    <h3 class="extra-large-text primary-text-color">Congrats!</h3>
+                    <p class="light-text-size poppins-400 secondary-text-color">Your order is placed successfully!</p>
+                </hgroup>
+                <PrimaryBtnComponent @click="closeModal(false)" class="w-100" btnType="button" :disabled="false" paddingY="14px" maxWidth="214px" style="margin-top: 74px;">
+                    <template v-slot:btnContent>
+                        <div class="d-flex align-items-center justify-content-center w-100" style="column-gap: 10px;">
+                            <p class="light-text-size poppins-400 third-text-color">
+                                Continue shopping
+                            </p>
+                        </div>
+                    </template>
+                </PrimaryBtnComponent>
+            </div>
+        </template>
+    </PrimaryModalComponent>
 </template>
 <script>
 import PrimaryBtnComponent from '@/components/PrimaryBtnComponent.vue';
 import QuantityComponent from '@/components/QuantityComponent.vue';
+import PrimaryModalComponent from '@/components/PrimaryModalComponent.vue';
 import * as yup from 'yup';
 export default {
     data(){
         return {
             cartProducts: [],
             checkoutSchema: {
-                name: yup.string().required(),
-                surname: yup.string().required(),
-                email: yup.string().required().email("The email field must be a valid email address."),
-                address: yup.string().required(),
-                zip_code: yup.number().required().typeError("The from field must be a number"),
+                name: yup.string().required("The name field is required."),
+                surname: yup.string().required("The surname field is required."),
+                email: yup.string().required("The email field is required.").email("The email field must be a valid email address.").min(3, "The email field must be at least 3 characters."),
+                address: yup.string().required("The address field is required.").min(3, "The address field must be at least 3 characters."),
+                zip_code: yup.number().required().typeError("The from field must be a number").min(2, "The zip code field must be at least 2."),
             },
+            // for modal >>
+            showModal: false,
         }
     },
     mounted(){
@@ -185,18 +208,26 @@ export default {
     components: {
         PrimaryBtnComponent,
         QuantityComponent,
+        PrimaryModalComponent,
     },
     methods: {
+        closeModal(isOpen){
+            this.triggerModal(isOpen);
+            this.$router.push("/");
+        },
+        triggerModal(isOpen){
+            this.showModal = isOpen;
+        },
         async checkoutProducts(values, actions){
             await new Promise(async (resolve) => {
-                console.log(values);
                 await this.$store.dispatch("checkoutProducts", values).then((response) => {
-                    if(response.data.status == 200){
-                        console.log("open modal");
-                        console.log("refirect after closing modal");
-                        
-                    }
+                    this.triggerModal(true);
                 }).catch((error) => {
+                    if(error?.response?.status == 422){
+                        Object.entries(error.response.data.errors).forEach(([key, value]) => {
+                            actions.setFieldError(key, value);
+                        });
+                    }
                 });
                 resolve();
             });

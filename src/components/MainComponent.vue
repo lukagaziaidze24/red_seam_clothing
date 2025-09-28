@@ -163,8 +163,6 @@ export default {
             this.$store.dispatch("getItemsFromCart").then((response) => {
                 this.isAuthenticated = true;
                 this.cartProducts = response.data;
-                console.log(response);
-                
             }).catch((error) => {
                 if(error?.response?.status == 401){
                     this.closePopout();

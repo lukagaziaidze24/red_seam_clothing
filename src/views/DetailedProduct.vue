@@ -16,21 +16,21 @@
                 </hgroup>
                 <div class="d-flex flex-column" style="row-gap: 48px;">
                     <article class="d-flex flex-column" style="row-gap: 16px;">
-                        <h6 class="standard-text-size poppins-400">
+                        <h5 class="standard-text-size poppins-400">
                             {{ `Color: ${choosenColorObj.id??''}` }}
-                        </h6>
+                        </h5>
                         <ColorSelectComponent :colorOptions="productInfo.available_colors" @choosenNewColor="handleNewColor" :outsideChooseTrigger="choosenColorID" />
                     </article>
                     <article class="d-flex flex-column" style="row-gap: 16px;">
-                        <h6 class="standard-text-size poppins-400">
+                        <h5 class="standard-text-size poppins-400">
                             {{ `Size ${choosenSizeObj.size??''}` }}
-                        </h6>
+                        </h5>
                         <SizeSelectComponent :sizeOptions="productInfo.available_sizes" @choosenNewSize="handleNewSize"/>
                     </article>
                     <article class="d-flex flex-column" style="row-gap: 16px;">
-                        <h6 id="quantity-label" class="standard-text-size poppins-400">
+                        <h5 id="quantity-label" class="standard-text-size poppins-400">
                             Quantity
-                        </h6>
+                        </h5>
                         <Multiselect name="quantity" id="quantity" aria-labelledby="quantity-label" v-model="quantityMultiselectObj.value" :options="quantityMultiselectObj.options" :mode="quantityMultiselectObj.mode"
                             :searchable="false" :loading="false" :close-on-select="true" :object="false" :resolve-on-load="false" :min-chars="1"
                             :hideSelected="true" :canDeselect="false" :canClear="false" :required="false"
@@ -88,6 +88,76 @@ import PrimaryCarouselComponent from '@/components/PrimaryCarouselComponent.vue'
 import axios from 'axios';
 
 export default {
+    head() {
+        return {
+            title: this.productInfo?.name?`${this.productInfo.name}`:"Product",
+            meta: [
+                {
+                    name: 'description',
+                    content: this.productInfo?.name?`${this.productInfo.name} ${this.productInfo.price}$ %separator %siteName.`:"Product %separator %siteName.",
+                },
+                {
+                    name: 'robots',
+                    content: 'index, follow'
+                },
+                // open graph meta tags >>
+                {
+                    property: 'og:url',
+                    content: this.productInfo?.id?`https://lukagaziaidze24.github.io/red_seam_clothing/detailedProduct/${this.productInfo.id}`:`https://lukagaziaidze24.github.io/red_seam_clothing/detailedProduct/`,
+                },
+                {
+                    property: 'og:title',
+                    content: this.productInfo?.name?`${this.productInfo.name}`:"Product",
+                },
+                {
+                    property: 'og:description',
+                    content: this.productInfo?.name?`${this.productInfo.name} ${this.productInfo.price}$ %separator %siteName.`:"Product %separator %siteName.",
+                },
+                {
+                    property: 'og:type',
+                    content: 'product'
+                },
+                {
+                    property: 'product:price:amount',
+                    content: this.productInfo?.price?`${this.productInfo.price}$`:"unknown $",
+                },
+                {
+                    property: 'product:price:currency',
+                    content: 'USD',
+                },
+                {
+                    property: 'og:locale',
+                    content: 'en'
+                },
+                {
+                    property: 'og:site_name',
+                    content: '%siteName'
+                },
+                // {
+                //     property: 'og:image',
+                //     content: '@/assets/images/cartImages/noItemsInCart.svg'
+                // },
+                {
+                    property: 'og:image:width',
+                    content: '1200'
+                },
+                {
+                    property: 'og:image:height',
+                    content: '600'
+                },
+                {
+                    property: 'og:image:alt',
+                    content: this.productInfo?.name?`${this.productInfo.name}`:"Product"
+                },
+            ],
+            link: [
+                {
+                    rel: 'canonical',
+                    content: this.productInfo?.id?`https://lukagaziaidze24.github.io/red_seam_clothing/detailedProduct/${this.productInfo.id}`:`https://lukagaziaidze24.github.io/red_seam_clothing/detailedProduct/`,
+                }
+            ]
+        }
+    },
     data(){
         return {
             addingToCart: false,
@@ -149,7 +219,7 @@ export default {
         getSingleProduct(){
             this.$store.dispatch("getSingleProduct", this.$route.params.productID).then((response) => {
                 this.productInfo = response.data;
-                document.title = this.productInfo.name;
+                // document.title = this.productInfo.name;
                 this.productInfo.available_colors = this.productInfo?.available_colors?.map((colorID) => {
                     return {
                         id: colorID,

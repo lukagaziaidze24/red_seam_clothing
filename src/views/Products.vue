@@ -139,13 +139,13 @@
             >
                 <template #prev-button>
                     <span>
-                        <img src="@/assets/images/paginationImages/prevBtn.svg" height="25" />
+                        <img src="@/assets/images/paginationImages/prevBtn.svg" height="25" alt="previous page"/>
                     </span>
                 </template>
 
                 <template #next-button>
                     <span>
-                        <img src="@/assets/images/paginationImages/nextBtn.svg" height="25" />
+                        <img src="@/assets/images/paginationImages/nextBtn.svg" height="25" alt="next page"/>
                     </span>
                 </template>
             </vue-awesome-paginate>
@@ -158,6 +158,68 @@ import PrimaryBtnComponent from '@/components/PrimaryBtnComponent.vue';
 import * as yup from 'yup';
 
 export default {
+    head() {
+        return {
+            title: "Products",
+            meta: [
+                {
+                    name: 'description',
+                    content: 'Browse our stylish products %separator %siteName.'
+                },
+                {
+                    name: 'robots',
+                    content: 'index, follow'
+                },
+                // open graph meta tags >>
+                {
+                    property: 'og:url',
+                    content: 'https://lukagaziaidze24.github.io/red_seam_clothing/'
+                },
+                {
+                    property: 'og:title',
+                    content: 'Products %separator %siteName'
+                },
+                {
+                    property: 'og:description',
+                    content: `Browse our stylish products %separator %siteName.`
+                },
+                {
+                    property: 'og:type',
+                    content: 'website'
+                },
+                {
+                    property: 'og:locale',
+                    content: 'en'
+                },
+                {
+                    property: 'og:site_name',
+                    content: '%siteName'
+                },
+                // {
+                //     property: 'og:image',
+                //     content: '@/assets/images/cartImages/noItemsInCart.svg'
+                // },
+                {
+                    property: 'og:image:width',
+                    content: '1200'
+                },
+                {
+                    property: 'og:image:height',
+                    content: '600'
+                },
+                {
+                    property: 'og:image:alt',
+                    content: 'Products %separator %siteName'
+                },
+            ],
+            link: [
+                {
+                    rel: 'canonical',
+                    content: 'https://lukagaziaidze24.github.io/red_seam_clothing/products'
+                }
+            ]
+        }
+    },
     data(){
         return {
             // for paging >>

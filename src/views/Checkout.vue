@@ -189,6 +189,68 @@ import QuantityComponent from '@/components/QuantityComponent.vue';
 import PrimaryModalComponent from '@/components/PrimaryModalComponent.vue';
 import * as yup from 'yup';
 export default {
+    head() {
+        return {
+            title: "Checkout products",
+            meta: [
+                {
+                    name: 'description',
+                    content: "Checkout your desired clothes",
+                },
+                {
+                    name: 'robots',
+                    content: 'index, follow'
+                },
+                // open graph meta tags >>
+                {
+                    property: 'og:url',
+                    content: "https://lukagaziaidze24.github.io/red_seam_clothing/detailedProduct/checkout",
+                },
+                {
+                    property: 'og:title',
+                    content: "Checkout products",
+                },
+                {
+                    property: 'og:description',
+                    content: "Checkout your desired clothes",
+                },
+                {
+                    property: 'og:type',
+                    content: 'website'
+                },
+                {
+                    property: 'og:locale',
+                    content: 'en'
+                },
+                {
+                    property: 'og:site_name',
+                    content: '%siteName'
+                },
+                // {
+                //     property: 'og:image',
+                //     content: '@/assets/images/cartImages/noItemsInCart.svg'
+                // },
+                {
+                    property: 'og:image:width',
+                    content: '1200'
+                },
+                {
+                    property: 'og:image:height',
+                    content: '600'
+                },
+                {
+                    property: 'og:image:alt',
+                    content: "Checkout your desired clothes"
+                },
+            ],
+            link: [
+                {
+                    rel: 'canonical',
+                    content: 'https://lukagaziaidze24.github.io/red_seam_clothing/checkout'
+                }
+            ]
+        }
+    },
     data(){
         return {
             cartProducts: [],

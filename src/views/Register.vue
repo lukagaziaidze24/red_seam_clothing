@@ -132,6 +132,68 @@ import axios from 'axios';
 
 
 export default {
+    head() {
+        return {
+            title: "Register",
+            meta: [
+                {
+                    name: 'description',
+                    content: 'Register to the %siteName and get the best online shopping experience.'
+                },
+                {
+                    name: 'robots',
+                    content: 'index, follow'
+                },
+                // open graph meta tags >>
+                {
+                    property: 'og:url',
+                    content: 'https://lukagaziaidze24.github.io/red_seam_clothing/#/register'
+                },
+                {
+                    property: 'og:title',
+                    content: 'register %separator %siteName'
+                },
+                {
+                    property: 'og:description',
+                    content: `Register to the %siteName and get the best online shopping experience.`
+                },
+                {
+                    property: 'og:type',
+                    content: 'website'
+                },
+                {
+                    property: 'og:locale',
+                    content: 'en'
+                },
+                {
+                    property: 'og:site_name',
+                    content: '%siteName'
+                },
+                // {
+                //     property: 'og:image',
+                //     content: '@/assets/images/cartImages/noItemsInCart.svg'
+                // },
+                {
+                    property: 'og:image:width',
+                    content: '1200'
+                },
+                {
+                    property: 'og:image:height',
+                    content: '600'
+                },
+                {
+                    property: 'og:image:alt',
+                    content: 'register %separator %siteName'
+                },
+            ],
+            link: [
+                {
+                    rel: 'canonical',
+                    content: 'https://lukagaziaidze24.github.io/red_seam_clothing/#/register'
+                }
+            ]
+        }
+    },
     data(){
         return {
             avatarImageSrcHolder: null,

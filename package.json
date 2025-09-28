@@ -8,6 +8,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@unhead/vue": "^2.0.17",
     "@vee-validate/yup": "^4.15.1",
     "@vueform/multiselect": "^2.6.11",
     "axios": "^0.25.0",

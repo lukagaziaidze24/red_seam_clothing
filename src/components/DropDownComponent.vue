@@ -1,10 +1,10 @@
 <template>
     <div class="dropDown-wrapper d-flex align-items-center" :style="{'--zIndex': zIndex}">
-        <div :aria-expanded="isOpen" class="cursor-pointer" aria-label="filter dropdown" @click="toggleDropdown()">
+        <button :aria-expanded="isOpen" class="cursor-pointer" @click="toggleDropdown()">
             <slot name="dropdownHeader">
 
             </slot>
-        </div>
+        </button>
         <div v-if="isOpen" class="dropdown-body primary-border" ref="body" :style="[{'--padding-block': paddingY}, {'--padding-inline': paddingX}]">
             <slot name="dropdownBody">
 
